@@ -1,0 +1,75 @@
+{
+  "name": "PsychologyPattern",
+  "type": "object",
+  "properties": {
+    "pattern_type": {
+      "type": "string",
+      "enum": [
+        "CIRCADIAN",
+        "WEEKLY",
+        "MARKET_CORRELATION",
+        "STRESS_PATTERN",
+        "CONFIDENCE_CYCLE"
+      ],
+      "description": "Type of psychological pattern detected"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable pattern description"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Pattern confidence score"
+    },
+    "data_points": {
+      "type": "number",
+      "description": "Number of mood entries used for analysis"
+    },
+    "recommendation": {
+      "type": "string",
+      "description": "AI-generated actionable recommendation"
+    },
+    "trigger_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Conditions that trigger this pattern"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "description": "Pattern severity for alerting"
+    },
+    "trend": {
+      "type": "string",
+      "enum": [
+        "IMPROVING",
+        "STABLE",
+        "DECLINING"
+      ],
+      "description": "Recent trend direction"
+    }
+  },
+  "required": [
+    "pattern_type",
+    "description",
+    "confidence",
+    "data_points",
+    "severity"
+  ],
+  "rls": {
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
